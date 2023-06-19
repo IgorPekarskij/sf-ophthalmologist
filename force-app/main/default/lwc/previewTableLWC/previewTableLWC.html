@@ -1,0 +1,69 @@
+<template>
+    <div>
+        <table class="unstyled-table">
+            <tbody>
+                <template if:true={showVisus}>
+                    <tr>
+                        <td class="title-column_width">{labels.visus}</td>
+                        <td>
+                            <div class="visus-fields_align-inline">
+                                <template for:each={visusMetaData.rightEye} for:item='field'>
+                                    <div key={field.id} class="input_max-width input-label_align-inline">
+                                        <lightning-formatted-text class="slds-m-right--xx-small" value={field.label}></lightning-formatted-text>
+                                        <lightning-input
+                                                data-id={field.id}
+                                                data-array={field.isArray}
+                                                type="text"
+                                                variant="label-hidden"
+                                                onchange={handleChangeValue}
+                                                onblur={handleFocusBlur}
+                                                value={field.value}>
+                                        </lightning-input>
+                                    </div>
+                                </template>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="visus-fields_align-inline">
+                                <template for:each={visusMetaData.leftEye} for:item='field'>
+                                    <div key={field.id} class="input_max-width input-label_align-inline">
+                                        <lightning-formatted-text class="slds-m-right--xx-small" value={field.label}></lightning-formatted-text>
+                                        <lightning-input
+                                                data-id={field.id}
+                                                type="text"
+                                                data-array={field.isArray}
+                                                variant="label-hidden"
+                                                onchange={handleChangeValue}
+                                                onblur={handleFocusBlur}
+                                                value={field.value}>
+                                        </lightning-input>
+                                    </div>
+                                </template>
+                            </div>
+                        </td>
+                    </tr>
+                </template>
+                <template for:each={fieldsData} for:item="fieldData">
+                    <tr key={fieldData.label}>
+                        <td class="title-column_width"><lightning-formatted-text class="slds-m-right--xx-small" value={fieldData.label}></lightning-formatted-text></td>
+                        <template for:each={fieldData.values} for:item="field">
+                            <td key={field.id}>
+                                <lightning-textarea
+                                        data-id={field.id}
+                                        data-array={field.isArray}
+                                        maxlength={maxTextAreaLength}
+                                        message-when-too-long={maxTextAreaLengthMessage}
+                                        type="text"
+                                        variant="label-hidden"
+                                        onchange={handleChangeValue}
+                                        onblur={handleFocusBlur}
+                                        value={field.value}>
+                                </lightning-textarea>
+                            </td>
+                        </template>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+    </div>
+</template>

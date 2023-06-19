@@ -1,0 +1,22 @@
+.element-position_right {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.margin-auto {
+    margin: auto;
+}
+
+.element-width-100 {
+    width: 100%;
+}
+
+.element-width-50 {
+    width: 50%;
+}
+
+.items-align_row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

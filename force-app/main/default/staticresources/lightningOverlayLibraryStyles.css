@@ -1,0 +1,32 @@
+.staticHeightContent div.modal-body{
+    height: 100%;
+}
+
+.staticCVGenerationHeight div.modal-footer{
+    padding: 8px;
+
+}
+
+.picklistOverflow div.slds-modal__content{
+    overflow: initial;
+}
+
+.picklistOverflow ul.slds-lookup__list{
+    max-height: 45vh;
+}
+
+.cancelConfirmation  > *{
+    z-index: 999999999;
+}
+
+.cancelConfirmation section.slds-modal  {
+    z-index: 9999999999;
+}
+
+.cancelConfirmation div.slds-modal__container{
+    width: 30%;
+}
+
+.cancelConfirmation div.slds-modal__content{
+    text-align: -webkit-center;
+}

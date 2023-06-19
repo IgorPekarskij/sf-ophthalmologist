@@ -1,0 +1,25 @@
+:host {
+    width: 100%;
+}
+
+.label {
+    display: flex;
+    align-items: center;
+}
+
+.label-top {
+    flex-direction: column;
+}
+
+.label-left {
+    flex-direction: row;
+    margin-right: 1rem;
+}
+
+.input-full-width {
+    width: 100%;
+}
+
+.hide-label {
+    display: none;
+}

@@ -1,0 +1,35 @@
+<!-- Create New Record Modal -->
+<template>
+    <div onkeyup={handleKeyUp} >
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <lightning-button-icon variant="bare-inverse"
+                                           class="slds-modal__close"
+                                           icon-name="utility:close"
+                                           title={labels.closeIconTitle}
+                                           onclick={hideCreateRecordModal}
+                                           alternative-text={labels.closeIconTitle}
+                                           size="small">
+
+                    </lightning-button-icon>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">{labels.headerTitleText}</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium">
+                    <lightning-record-edit-form onsubmit={handleSubmit} object-api-name={sobjectName}>
+                        <lightning-input-field class="selectorForInput" required field-name="Name__c" onchange={onNameChange}></lightning-input-field>
+                    </lightning-record-edit-form>
+                </div>
+                <footer class="slds-modal__footer">
+                    <lightning-button variant="neutral" onclick={hideCreateRecordModal} label={labels.cancelButtonTitle}></lightning-button>
+                    <lightning-button class="slds-m-left--xx-small slds-m-right--xx-small" variant="brand" onclick={handleSaveAndNew} label={labels.saveAndNewButtonTitle}></lightning-button>
+                    <lightning-button variant="brand" onclick={handleSave} label={labels.saveButtonTitle}></lightning-button>
+                </footer>
+            </div>
+        </section>
+    </div>
+    <div class={showSearchSpinner}>
+        <lightning-spinner id="SearchSpinner" size="medium"></lightning-spinner>
+    </div>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+</template>

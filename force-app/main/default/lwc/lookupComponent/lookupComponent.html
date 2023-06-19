@@ -1,0 +1,82 @@
+<template>
+    <div class={formElementClass}>
+        <label class={labelClass} for="combobox">
+            <abbr if:true={required} class="slds-required" title="required">* </abbr>{label}
+        </label>
+
+        <div class="slds-form-element__control input-full-width">
+            <div class={comboboxContainerClass}>
+                <div class={comboboxClass} aria-expanded={open} aria-haspopup="listbox" role="combobox">
+                    <div class={comboboxFormElementClass} role="none">
+                        <span if:true={selectedOptions.length} class="slds-combobox__input-entity-icon" title={labels.labels}>
+                            <lightning-icon icon-name={iconName}
+                                            alternative-text=""
+                                            size="small">
+                            </lightning-icon>
+                        </span>
+
+                        <input class={inputClass}
+                                id="combobox"
+                                data-id="combobox"
+                                type="text"
+                                name={name}
+                                value={inputValue}
+                                aria-autocomplete="list"
+                                aria-controls="listbox"
+                                autocomplete="off"
+                                role="textbox"
+                                placeholder={placeholder}
+                                disabled={disabled}
+                                readonly={inputReadonly}
+                                required={required}
+                                onfocus={handleFocus}
+                                onkeyup={handleKeyup}
+                                oninput={handleInput}
+                                onblur={handleBlur}
+                        />
+
+                        <span if:false={selectedOptions.length} class="slds-input__icon slds-input__icon_right">
+                            <lightning-icon icon-name="utility:search"
+                                            alternative-text={labels.labels}
+                                            size="x-small">
+                            </lightning-icon>
+                        </span>
+
+                        <button class="slds-button slds-button_icon slds-input__icon slds-input__icon_right"
+                                if:true={selectedOptions.length}
+                                onmousedown={handleRemoveSelectedOption}
+                                title={labels.deleteIconTitle}>
+                            <lightning-icon icon-name="utility:close"
+                                            alternative-text={labels.deleteIconTitle}
+                                            size="x-small">
+                            </lightning-icon>
+                        </button>
+                    </div>
+
+                    <div class="slds-dropdown slds-dropdown_length-with-icon-5 slds-dropdown_fluid"
+                            id="listbox"
+                            data-id="listbox"
+                            tabindex="-1"
+                            role="listbox">
+                        <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                            <template for:each={searchResults} for:item="result" for:index="index">
+                                <c-lookup-option data-id="option"
+                                                        data-index={index}
+                                                        key={result.id}
+                                                        option={result}
+                                                        onoptionmousedown={handleOptionMousedown}>
+                                </c-lookup-option>
+                            </template>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slds-form-element__help"
+                if:true={errorMessage}
+                id="error-message">
+            {errorMessage}
+        </div>
+    </div> 
+</template>

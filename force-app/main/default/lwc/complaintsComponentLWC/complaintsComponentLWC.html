@@ -1,0 +1,10 @@
+<template>
+    <lightning-layout multiple-rows="true" vertical-align="center" horizontal-align="spread">
+        <lightning-layout-item size="12" padding="around-small">
+            <lightning-textarea data-id="complaints" label={labels.complaints} value={complaints} onchange={handleChange} maxlength="5000" message-when-too-long={labels.maxLengthErrorMessage}></lightning-textarea>
+        </lightning-layout-item>
+        <lightning-layout-item size="12" padding="around-small">
+            <lightning-textarea data-id="anamnesis" label={labels.anamnesis} value={anamnesis} onchange={handleChange} maxlength="5000" message-when-too-long={labels.maxLengthErrorMessage}></lightning-textarea>
+        </lightning-layout-item>
+    </lightning-layout>
+</template>

@@ -1,0 +1,37 @@
+<!-- Multi Select Combobox Lwc -->
+<template>
+    <div class="slds-form-element" onkeyup={handleKeyUp}>
+        <div class="slds-form-element__control">
+            <div class="slds-combobox_container">
+                <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click" aria-expanded="false" aria-haspopup="listbox" role="combobox">
+                    <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+                        <lightning-input onfocus={showDropdown} class="searchInputSelector" name="enter-search" value={searchInput} variant="label-hidden" type="search"></lightning-input>
+                    </div>
+                    <template if:true={showOptions}>
+                        <section aria-describedby="dialog-body-id-52" aria-label="Language Options" class="section-align slds-popover slds-popover_full-width" id="popover-unique-id-02" role="dialog">
+                            <div class="slds-popover__body slds-popover__body_small" id="dialog-body-id-52" onkeyup={handleKeyUp}>
+                                <lightning-checkbox-group name="Checkbox Group"
+                                                         label={labels.checkboxGroupTitle}
+                                                         options={options}
+                                                         value={selectedOptions}
+                                                         onchange={handleChange}
+                                ></lightning-checkbox-group>
+                            </div>
+                            <footer class="slds-popover__footer slds-popover__footer_form" onkeyup={handleKeyUp}>
+                                <lightning-button class="slds-m-right--xx-small" variant="neutral" onclick={cancelSelection} label={labels.closeButtonTitle}></lightning-button>
+                                <lightning-button class="slds-m-right--xx-small" variant="brand" onclick={selectOptions} label={labels.saveButtonTitle}></lightning-button>
+                                <lightning-button variant="brand" onclick={openCreateModal} label={labels.newRecordButtonTitle}></lightning-button>
+                            </footer>
+                        </section>
+                    </template>
+                    <div class={showSearchSpinner}>
+                        <lightning-spinner id="SearchSpinner" size="small"></lightning-spinner>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <template if:true={showCreateRecordModal}>
+        <c-create-new-record-modal sobject-name={sobjectName} onclosemodal={hideCreateRecordModal} oncancelcreate={hideCreateRecordModal} onrecordcreated={handleRecordCreated}></c-create-new-record-modal>
+    </template>
+</template>

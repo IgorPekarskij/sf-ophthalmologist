@@ -1,0 +1,19 @@
+<!-- Multiselect Component Lwc -->
+<template>
+    <div class="slds-card__body slds-card__body_inner">
+        <label class="slds-form-element__label" for="contactLookup">{label}</label>
+        <c-multi-select-combobox-l-w-c data-id="comboComponentSelector" onitemselected={handleSelectedItems} sobject-name={sobjectName}></c-multi-select-combobox-l-w-c>
+    </div>
+    <div class="slds-p-top_xx-small">
+        <template for:each={pills} for:item="item">
+            <lightning-pill
+                    key={item.value}
+                    label={item.label}
+                    name={item.value}
+                    onremove={removePill}
+                    class="slds-m-right_xx-small slds-m-left_none slds-m-bottom_xx-small" >
+
+            </lightning-pill>
+        </template>
+    </div>
+</template>

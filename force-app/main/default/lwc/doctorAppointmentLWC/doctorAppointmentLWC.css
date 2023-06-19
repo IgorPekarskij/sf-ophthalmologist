@@ -1,0 +1,41 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    flex-wrap: wrap-reverse;
+}
+
+.header-lookup_position {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.lookup-min-width {
+    width: 350px;
+    min-width: 200px;
+}
+
+.width100 {
+    width: 100%;
+}
+
+.min-width_button-item {
+    min-width: 180px;
+    text-align: end;
+}
+
+.logo_min-size {
+    min-width: 50px;
+}
+
+.card {
+    background: rgb(255, 255, 255);
+    border: 1px solid rgb(221, 219, 218);
+    border-radius: .25rem;
+    background-clip: padding-box;
+    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.20);
+}

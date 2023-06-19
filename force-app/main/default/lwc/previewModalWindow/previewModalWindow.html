@@ -1,0 +1,24 @@
+<!-- Preview Modal Window -->
+<template>
+    <div onkeyup={handleKeyUp}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal--large">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <lightning-button-icon variant="bare-inverse"
+                                           class="slds-modal__close"
+                                           icon-name="utility:close"
+                                           title="Закрыть"
+                                           onclick={hidePreviewModal}
+                                           alternative-text="Закрыть"
+                                           size="small">
+
+                    </lightning-button-icon>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium">
+                    <c-preview-component-l-w-c data-id="preview-page" appointment-data={inputDat}></c-preview-component-l-w-c>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+</template>

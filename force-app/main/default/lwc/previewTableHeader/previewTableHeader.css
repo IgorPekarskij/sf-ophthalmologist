@@ -1,0 +1,15 @@
+.unstyled-table {
+    width: 100%;
+}
+
+table.unstyled-table td,  table.unstyled-table th {
+    padding: 5px;
+}
+
+table.unstyled-table thead {
+    background: rgb(243, 242, 242);
+}
+
+.title-column_width {
+    width: 15%;
+}

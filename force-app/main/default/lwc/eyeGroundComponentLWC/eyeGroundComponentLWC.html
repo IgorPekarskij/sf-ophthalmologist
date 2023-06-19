@@ -1,0 +1,30 @@
+<template>
+    <lightning-layout horizontal-align="space" vertical-align="center" multiple-rows="true">
+        <lightning-layout-item class="column-min-size" size="12">
+            <lightning-button-stateful
+                    variant="brand"
+                    label-when-off={labels.ophthalmoscopically}
+                    label-when-on={labels.notOphthalmoscopically}
+                    icon-name-when-off="utility:preview"
+                    icon-name-when-on="utility:hide"
+                    selected={notOphthalmoscopically}
+                    onclick={handleClick}>
+            </lightning-button-stateful>
+        </lightning-layout-item>
+        <lightning-layout-item class="column-min-size" size="12">
+            <c-multiselect-component-l-w-c data-id={opticDisk} label={labels.opticDisk} sobject-name="Optic_disk__c"></c-multiselect-component-l-w-c>
+        </lightning-layout-item>
+        <lightning-layout-item class="column-min-size" size="12">
+            <c-multiselect-component-l-w-c data-id={arteries} label={labels.arteries} sobject-name="Arterie__c"></c-multiselect-component-l-w-c>
+        </lightning-layout-item>
+        <lightning-layout-item class="column-min-size" size="12">
+            <c-multiselect-component-l-w-c data-id={viennas} label={labels.viennas} sobject-name="Vienna__c"></c-multiselect-component-l-w-c>
+        </lightning-layout-item>
+        <lightning-layout-item class="column-min-size" size="12">
+            <c-multiselect-component-l-w-c data-id={mz} label={labels.mz} sobject-name="Macular_area__c"></c-multiselect-component-l-w-c>
+        </lightning-layout-item>
+        <lightning-layout-item class="column-min-size" size="12">
+            <c-multiselect-component-l-w-c data-id={periphery} label={labels.periphery} sobject-name="Periphery__c"></c-multiselect-component-l-w-c>
+        </lightning-layout-item>
+    </lightning-layout>
+</template>

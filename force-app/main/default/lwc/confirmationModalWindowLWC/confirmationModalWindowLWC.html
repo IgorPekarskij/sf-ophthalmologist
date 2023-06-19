@@ -1,0 +1,32 @@
+<!-- Confirmation Modal Window Lwc -->
+<template>
+    <div onkeyup={handleKeyUp}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal__header--empty">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <lightning-button-icon variant="bare-inverse"
+                                           class="slds-modal__close"
+                                           icon-name="utility:close"
+                                           title="Закрыть"
+                                           onclick={hidePreviewModal}
+                                           alternative-text={labels.cancelButtonTitle}
+                                           size="small">
+
+                    </lightning-button-icon>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium">
+                    <lightning-layout multiple-rows='true' vertical-align='center' horizontal-align='center'>
+                        <lightning-layout-item padding='around-small' size='12'>{confirmationText}</lightning-layout-item>
+                        <lightning-layout-item padding='around-small' size='12'>
+                            <lightning-button variant="brand" label={labels.cancelButtonTitle} onclick={hidePreviewModal}></lightning-button>
+                            <lightning-button variant="brand" onclick={confirm} label={labels.confirmButtonTitle} ></lightning-button>
+                        </lightning-layout-item>
+                    </lightning-layout>
+
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+</template>
+</template>

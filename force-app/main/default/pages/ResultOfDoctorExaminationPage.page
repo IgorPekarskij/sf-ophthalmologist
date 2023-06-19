@@ -1,0 +1,238 @@
+<apex:page standardController="Doctor_Appointment__c"
+           extensions="ResultOfDoctorExaminationCtrl"
+           showHeader="false"
+           sideBar="false"
+           standardStylesheets="false"
+           applyHtmlTag="true"
+           renderAs="pdf"
+           title="Центр микрохирургии глаза Макарчука"
+>
+    <html>
+        <header>
+            <apex:stylesheet value="{!URLFOR($Resource.ResultPageCSS)}"/>
+        </header>
+        <body class="main">
+            <div class="header table-header-background">
+                <table class="background-transparent width100">
+                    <tbody class="background-transparent">
+                        <tr >
+                            <td><img src="{!$Resource.DocLogo}" width="50" height="50" alt="Logo"/></td>
+                            <td class="main-header-text"><b>{!pageHeader}</b></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <table>
+                <tbody>
+                <tr class="main-information-table-header">
+                    <td>ФИО</td>
+                    <td class="padding-left10">{!patientName}</td>
+                </tr>
+                <tr class="main-information-table-header">
+                    <td >Дата рождеия</td>
+                    <td class="padding-left10">{!patientBirthdate}</td>
+                </tr>
+                <tr class="main-information-table-header">
+                    <td>Жалобы</td>
+                    <td class="padding-left10">{!doctor_Appointment__c.Complaints__c}</td>
+                </tr>
+                <tr class="main-information-table-header">
+                    <td>Анамнез</td>
+                    <td  class="padding-left10" >{!doctor_Appointment__c.Anamnesis__c}</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <hr/>
+            <apex:outputPanel rendered="{!displayObjectiveStatus}">
+                <table class="width100">
+                    <thead>
+                        <tr class="table-header-background">
+                            <th class="border-right--none width20"></th>
+                            <th class="text-align--center width40"><strong>Правый глаз</strong></th>
+                            <th class="text-align--center width40"><strong>Левый глаз</strong></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="table-border--right table-border--bottom" >VIS</td>
+                            <td class="table-border--bottom" >
+                                <span> {!objectiveStatus.Visus_Right_Eye__c} </span>
+                                <apex:outputPanel rendered="{! !showCorrectionRight}">
+                                    <span>{!noCorrection}</span>
+                                </apex:outputPanel>
+                                <apex:outputPanel rendered="{!showCorrectionRight}">
+                                    <apex:outputPanel rendered="{! !ISBLANK(objectiveStatus.Sphere_Right_Cor__c)}">
+                                        <span>с кор: SPH</span>
+                                        <span> {!objectiveStatus.Sphere_Right_Cor__c} </span>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{! !ISBLANK(objectiveStatus.Cylinder_Right_Cor__c)}">
+                                        <span>CYL</span>
+                                        <span> {!objectiveStatus.Cylinder_Right_Cor__c} </span>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{! !ISBLANK(objectiveStatus.Axys_Right_Cor__c)}">
+                                        <span>AX</span>
+                                        <span> {!objectiveStatus.Axys_Right_Cor__c} </span>
+                                    </apex:outputPanel>
+                                    <span>=</span>
+                                    <span>{!objectiveStatus.Visus_Right_Cor__c}</span>
+                                </apex:outputPanel>
+                            </td>
+                            <td class="table-border--bottom" >
+                                <span> {!objectiveStatus.Visus_Left_Eye__c} </span>
+                                <apex:outputPanel rendered="{! !showCorrectionLeft}">
+                                    <span>{!noCorrection}</span>
+                                </apex:outputPanel>
+                                <apex:outputPanel rendered="{!showCorrectionLeft}">
+                                    <apex:outputPanel rendered="{! !ISBLANK(objectiveStatus.Sphere_Left_Cor__c)}">
+                                        <span>с кор: SPH</span>
+                                        <span> {!objectiveStatus.Sphere_Left_Cor__c} </span>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{! !ISBLANK(objectiveStatus.Cylinder_Left_Cor__c)}">
+                                        <span>CYL</span>
+                                        <span> {!objectiveStatus.Cylinder_Left_Cor__c} </span>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{! !ISBLANK(objectiveStatus.Axys_Left_Cor__c)}">
+                                        <span>AX</span>
+                                        <span>{!objectiveStatus.Axys_Left_Cor__c} </span>
+                                    </apex:outputPanel>
+                                    <span>=</span>
+                                    <span>{!objectiveStatus.Visus_Left_Cor__c}</span>
+                                </apex:outputPanel>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="table-border--right table-border--bottom width20">ВГД (мм.рт.ст.)</td>
+                            <td class="table-border--right table-border--bottom width40">{!objectiveStatus.Inner_Eye_Pressure_Right__c}</td>
+                            <td class="table-border--bottom width40">{!objectiveStatus.Inner_Eye_Pressure_Left__c}</td>
+                        </tr>
+                        <tr>
+                            <td class="table-border--right table-border--bottom width20">ЦТР (мкм)</td>
+                            <td class="table-border--right table-border--bottom width40">{!objectiveStatus.Central_Corneal_Thickness_Right__c}</td>
+                            <td class="table-border--bottom width40">{!objectiveStatus.Central_Corneal_Thickness_Left__c}</td>
+                        </tr>
+                        <tr>
+                            <td class="table-border--right table-border--bottom width20">ПЗО (мм)</td>
+                            <td class="table-border--right table-border--bottom width40">{!objectiveStatus.Anterior_Posterior_Axis_Right__c}</td>
+                            <td class="table-border--bottom width40">{!objectiveStatus.Anterior_Posterior_Axis_Left__c}</td>
+                        </tr>
+                        <tr>
+                            <td class="table-border--right table-border--bottom width20">Орбита положения глаз</td>
+                            <td class="table-border--right table-border--bottom width40">{!eyePositionRight}</td>
+                            <td class="table-border--bottom width40">{!eyePositionLeft}</td>
+                        </tr>
+                        <tr>
+                            <td class="table-border--right table-border--bottom width20">Веки</td>
+                            <td class="table-border--right table-border--bottom width40">{!eyelidRight}</td>
+                            <td class="table-border--bottom width40">{!eyelidLeft}</td>
+                        </tr>
+                        <tr>
+                            <td class="table-border--right table-border--bottom width20">Конъюнктива</td>
+                            <td class="table-border--right table-border--bottom width40">{!conjunctivaRight}</td>
+                            <td class="table-border--bottom width40">{!conjunctivaLeft}</td>
+                        </tr>
+                        <tr >
+                            <td class="table-border--right table-border--bottom width20">Роговица</td>
+                            <td class="table-border--right table-border--bottom width40">{!corneaRight}</td>
+                            <td class="table-border--bottom width40">{!corneaLeft}</td>
+                        </tr>
+                        <tr>
+                            <td class="table-border--right table-border--bottom width20">Передняя камера</td>
+                            <td class="table-border--right table-border--bottom width40">{!anteriorChamberRight}</td>
+                            <td class="table-border--bottom width40">{!anteriorChamberLeft}</td>
+                        </tr>
+                        <tr>
+                            <td class="table-border--right table-border--bottom width20">Угол передней камеры</td>
+                            <td class="table-border--right table-border--bottom width40">{!anteriorChamberAngleRight}</td>
+                            <td class="table-border--bottom width40">{!anteriorChamberAngleLeft}</td>
+                        </tr>
+                        <tr>
+                            <td class="table-border--right table-border--bottom width20">Радужка, зрачок</td>
+                            <td class="table-border--right table-border--bottom width40">{!irisRight}</td>
+                            <td class="table-border--bottom width40">{!irisLeft}</td>
+                        </tr>
+                        <tr>
+                            <td class="table-border--right table-border--bottom width20">Хрусталик</td>
+                            <td class="table-border--right table-border--bottom width40">{!eyeLensRight}</td>
+                            <td class="table-border--bottom width40">{!eyeLensLeft}</td>
+                        </tr>
+                        <tr>
+                            <td class="table-border--right table-border--bottom width20">Стекловидное тело</td>
+                            <td class="table-border--right table-border--bottom width40">{!vitreousRight}</td>
+                            <td class="table-border--bottom width40">{!vitreousLeft}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!displayEyeground}">
+                <div class="table-header-background">
+                    <table class="background-transparent width100">
+                        <tbody class="background-transparent">
+                        <tr >
+                            <td class="text-align--center">Глазное дно</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <table class="width100">
+                    <thead>
+                        <tr class="table-header-background">
+                            <th class="text-align--center width47"><strong>Правый глаз</strong></th>
+                            <th class="text-align--center width47"><strong>Левый глаз</strong></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="vertical-align--top table-border--right table-border--bottom width47">
+                                <apex:outputPanel rendered="{!!eyegroundInvestigation.Is_Ophthalmoscopically_Right__c}">
+                                    ДЗН {!opticDiskRight}, артерии {!arteriesRight}, вены {!viennasRight}, MZ {!mZRight}, на переферии {!peripheryRight}
+                                </apex:outputPanel>
+                                <apex:outputPanel rendered="{!eyegroundInvestigation.Is_Ophthalmoscopically_Right__c}">
+                                    {!notOphthalmoscopically}
+                                </apex:outputPanel>
+                            </td>
+                            <td class="vertical-align--top table-border--right table-border--bottom width47">
+                                <apex:outputPanel rendered="{!!eyegroundInvestigation.Is_Ophthalmoscopically_Left__c}">
+                                    ДЗН {!opticDiskLeft}, артерии {!arteriesLeft}, вены {!viennasLeft}, MZ {!mZLeft}, на переферии {!peripheryLeft}
+                                </apex:outputPanel>
+                                <apex:outputPanel rendered="{!eyegroundInvestigation.Is_Ophthalmoscopically_Left__c}">
+                                    {!notOphthalmoscopically}
+                                </apex:outputPanel>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </apex:outputPanel>
+
+            <hr/>
+            <table class="width100">
+                <tbody>
+                    <tr>
+                        <td class="table-border--top table-border--right table-border--bottom width20">Диагноз</td>
+                        <td class="table-border--top table-border--bottom width80">{!diagnosis}</td>
+                    </tr>
+                    <tr>
+                        <td class="table-border--right table-border--bottom width20">Рекомендации</td>
+                        <td class="table-border--bottom width80">
+                            <apex:repeat value="{!recommendations}" var="rec">
+                                <apex:outputText value="{! ' - ' + rec}" /><br />
+                            </apex:repeat>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="footer-table">
+                <tbody >
+                <tr >
+                    <td class="footer-table--date-header footer-table--font-size15">Дата: </td>
+                    <td class="footer-table--date footer-table--font-size15">{!appointmentDate}</td>
+                    <td class="footer-table--doctor-header footer-table--font-size15">Врач:</td>
+                    <td class="footer-table--row-sep"></td>
+                    <td class="footer-table--doctor footer-table--font-size15">{!doctorName}</td>
+                </tr>
+                </tbody>
+            </table>
+        </body>
+    </html>
+</apex:page>

@@ -1,0 +1,21 @@
+.main {
+    width: 100%;
+}
+
+.column-min-size {
+    min-width: 300px;
+    max-width: 49%;
+}
+
+@media (min-width: 1116px) {
+    .column-min-size {
+        min-width: 300px;
+    }
+}
+
+@media (max-width: 1115px) {
+    .column-min-size {
+        min-width: 300px;
+        width: 100%;
+    }
+}

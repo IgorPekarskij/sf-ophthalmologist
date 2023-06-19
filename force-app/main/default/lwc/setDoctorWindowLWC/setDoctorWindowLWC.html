@@ -1,0 +1,29 @@
+<!-- Set Doctor Window Lwc -->
+<template>
+    <div class="card slds-p-around_medium first-screen">
+        <h1 class="slds-text-align_center">{labels.title}</h1>
+        <div class="slds-p-around_medium">
+            <c-lookup-component
+                    data-id="doctor"
+                    icon-name="standard:contact"
+                    value={doctorValue}
+                    label={labels.doctorTitle}
+                    object="Contact"
+                    required
+                    record-type-id={recordTypeId}
+                    onchange={handleSelectValue}
+            ></c-lookup-component>
+        </div>
+        <div class="slds-p-around_medium">
+            <c-lookup-component
+                    data-id="clinic"
+                    icon-name="standard:account"
+                    value={clinicValue}
+                    label={labels.appointmentPlaceTitle}
+                    object="Account"
+                    required
+                    onchange={handleSelectValue}
+            ></c-lookup-component>
+        </div>
+    </div>
+</template>

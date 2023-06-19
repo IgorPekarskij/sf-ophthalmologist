@@ -1,0 +1,9 @@
+.spinner-position {
+    top: 50%;
+    left: 50%;
+    z-index: 100;
+}
+.section-align {
+    position: absolute;
+    top: 33px;
+}

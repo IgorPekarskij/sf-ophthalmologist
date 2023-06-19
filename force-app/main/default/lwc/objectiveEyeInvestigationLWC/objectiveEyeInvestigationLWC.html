@@ -1,0 +1,120 @@
+<template>
+    <div>
+        <lightning-layout multiple-rows="true" horizontal-align="spread">
+            <lightning-layout-item  size="12" >
+                <lightning-layout vertical-align="end" horizontal-align="spread" multiple-rows="true">
+                    <lightning-layout-item size="7">
+                        <lightning-combobox data-id={visusId} label={labels.visusTitle} onchange={handleInputChange} options={visusOpt} value={selectedVisus}></lightning-combobox>
+                    </lightning-layout-item>
+                    <lightning-layout-item class="slds-m-left--xx-small slds-text-align--center" size="4" >
+                        <lightning-button-stateful
+                                variant="brand"
+                                label-when-off={labels.withoutCorrection}
+                                label-when-on={labels.withCorrection}
+                                icon-name-when-off="utility:chevronright"
+                                icon-name-when-on="utility:chevrondown"
+                                selected={showCorrection}
+                                onclick={handleClickShowCorrection}>
+                        </lightning-button-stateful>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </lightning-layout-item>
+            <lightning-layout-item size="12" >
+                <template if:true={showCorrection}>
+                    <lightning-layout multiple-rows="true">
+                        <lightning-layout-item size="12">{labels.withCorrection}</lightning-layout-item>
+                        <lightning-layout-item size="12">
+                            <lightning-layout multiple-rows="true" horizontal-align="spread">
+                                <lightning-layout-item class="slds-p-right--small" size="3">
+                                    <lightning-input
+                                            data-id={sphereId}
+                                            class="inputSelector"
+                                            type="text"
+                                            label={labels.sphereTitle}
+                                            onblur={validateInputData}
+                                    ></lightning-input>
+                                </lightning-layout-item>
+                                <lightning-layout-item class="slds-p-right--small" size="3">
+                                    <lightning-input
+                                            data-id={cylinderId}
+                                            class="inputSelector"
+                                            type="text"
+                                            label={labels.cylinderTitle}
+                                            onblur={validateInputData}
+                                    ></lightning-input>
+                                </lightning-layout-item>
+                                <lightning-layout-item class="slds-p-right--small" size="3">
+                                    <lightning-input
+                                            data-id={axysId}
+                                            class="inputSelector"
+                                            type="number"
+                                            min="0"
+                                            max="360"
+                                            label={labels.axisTitle}
+                                            onblur={handleInputChange}
+                                    ></lightning-input>
+                                </lightning-layout-item>
+                                <lightning-layout-item size="3" >
+                                    <lightning-combobox data-id={visusCorId}
+                                                        class="inputSelector"
+                                                        label={labels.visusTitle}
+                                                        onchange={handleInputChange}
+                                                        options={visusOptCor}
+                                                        value={selectedVisusCor}
+                                    ></lightning-combobox>
+                                </lightning-layout-item>
+                            </lightning-layout>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </template>
+            </lightning-layout-item>
+            <lightning-layout-item class="slds-p-top--small" size="12" >
+                <lightning-layout multiple-rows="true" horizontal-align="spread">
+                    <lightning-layout-item class="slds-p-right--small" size="4">
+                        <lightning-input
+                                data-id={innerPressureId}
+                                class="inputSelector"
+                                type="number"
+                                min="0"
+                                max="50"
+                                step="0.01"
+                                label={labels.innerPressureTitle}
+                                onblur={handleInputChange}
+                        ></lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item class="slds-p-right--small" size="4">
+                        <lightning-input
+                                data-id={cornThinkId}
+                                class="inputSelector"
+                                type="number"
+                                min="0"
+                                step="0.01"
+                                max="1000"
+                                label={labels.ctrTitle}
+                                onblur={handleInputChange}
+                        ></lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="4">
+                        <lightning-input
+                                data-id={antPostAxId}
+                                class="inputSelector"
+                                type="number"
+                                min="0"
+                                step="0.01"
+                                max="40"
+                                label={labels.pzoTitle}
+                                onblur={handleInputChange}
+                        ></lightning-input>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </lightning-layout-item>
+            <template for:each={fieldsData} for:item="field">
+                <lightning-layout-item key={field.id} size="12" >
+                    <div class='slds-card__body slds-card__body_inner'>
+                        <c-multiselect-component-l-w-c data-id={field.id} class="selectorCombo" label={field.label} sobject-name={field.sobject}></c-multiselect-component-l-w-c>
+                    </div>
+                </lightning-layout-item>
+            </template>
+        </lightning-layout>
+    </div>
+</template>

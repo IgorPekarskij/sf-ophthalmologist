@@ -1,0 +1,101 @@
+
+.main {
+    font-family: Arial Unicode MS;
+    color: rgb(8, 7, 7);
+    font-size: 12px;
+    font-family: Arial Unicode MS;
+}
+.header {
+    padding: 5px;
+}
+.background-transparent {
+    background: transparent;
+}
+.font-size15 {
+    font-size: 15px;
+}
+.width10 {
+    width: 10%;
+}
+.width20 {
+    width: 20%;
+}
+.width40 {
+    width: 40%;
+}
+.width47 {
+    width: 47%;
+}
+.width80 {
+    width: 80%;
+}
+.width100 {
+    width: 100%;
+}
+.text-align--center {
+    text-align: center;
+}
+.text-align--start {
+    text-align: start;
+}
+.text-align--end {
+    text-align: end;
+}
+.border-right--none {
+    border-right: none;
+}
+.main-header-text {
+    font-size: 18px;
+    text-align: left;
+    color: #27B3E0
+}
+.table-border--right {
+    border-right: 1px solid rgb(221, 219, 218);
+}
+.table-border--bottom {
+    border-bottom: 1px solid rgb(221, 219, 218);
+}
+.table-border--top {
+    border-top: 1px solid rgb(221, 219, 218);
+}
+.table-header-background {
+    background: rgb(243, 242, 242);
+}
+.main-information-table-header {
+    border-bottom: 1px solid rgb(221, 219, 218);
+    padding: 5px;
+}
+.padding-left10 {
+    padding-left: 10px;
+}
+.footer-table {
+    margin: 15px 0 10px 20px;
+}
+.footer-table--font-size15 {
+    font-size: 15px;
+}
+.footer-table--date-header {
+    text-align: end;
+    width: 10%;
+}
+.footer-table--date {
+    text-align: start;
+    width: 20%;
+}
+.footer-table--doctor-header {
+    text-align: end;
+    width: 10%;
+    padding-left: 25px;
+}
+.footer-table--doctor {
+    text-align: start;
+    width: 45%;
+}
+.footer-table--row-sep {
+    border-bottom: 1px solid rgb(221, 219, 218);
+    text-align: end;
+    width: 20%;
+}
+.vertical-align--top {
+    vertical-align: top;
+}

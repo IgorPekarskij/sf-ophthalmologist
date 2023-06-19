@@ -1,0 +1,14 @@
+<template>
+    <li role="presentation" class="slds-listbox__item">
+        <div id="option" class={optionClass} role="option" onmousedown={handleMousedown} aria-selected={option.highlighted}>
+            <span class="slds-media__figure slds-listbox__option-icon">
+                <lightning-icon icon-name={option.icon} alternative-text={option.title} size="small"></lightning-icon>
+            </span>
+
+            <span class="slds-media__body">
+                <span class="slds-listbox__option-text slds-listbox__option-text_entity">{option.title}</span>
+                <span if:true={option.subtitle} class="slds-listbox__option-meta slds-listbox__option-meta_entity">{option.subtitle}</span>
+            </span>
+        </div>
+    </li>
+</template>

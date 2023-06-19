@@ -1,0 +1,104 @@
+<!-- Doctor Appointment Lwc -->
+<template>
+    <template if:true={isFeatureAllowed}>
+        <template if:true={showStartButton}>
+            <lightning-button variant="brand" label={labels.newAppointmentButtonLabel} onclick={startNewAppointment}></lightning-button>
+        </template>
+        <template if:true={showMainScreen}>
+            <div class="main">
+                <div class="slds-header slds-m-bottom_xx-small">
+                    <div class="slds-page-header header">
+                        <lightning-layout class="width100" multiple-rows="true" vertical-align="center">
+                            <lightning-layout-item size="7" padding="around-small">
+                                <lightning-layout class="" multiple-rows="true" vertical-align="center">
+                                    <lightning-layout-item class="logo_min-size" size="1">
+                                        <div class="slds-media__figure">
+                                          <span class="slds-icon_container">
+                                            <img src={docLogo}  height="85" width="85" alt={labels.logoTitle} title={labels.logoTitle}/>
+                                          </span>
+                                        </div>
+                                    </lightning-layout-item>
+                                    <lightning-layout-item size="11">
+                                        <div class="slds-media__body">
+                                            <h2 class="slds-truncate" title={headerText}>
+                                                <span class="slds-text-heading_small">{headerText}</span>
+                                            </h2>
+                                            <div class="lookup-min-width">
+                                                <lightning-button label={labels.changeDoctorButtonLabel} onclick={openChangeDoctorScreen}></lightning-button>
+                                            </div>
+                                        </div>
+                                    </lightning-layout-item>
+                                </lightning-layout>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="5" class="min-width_button-item" padding="around-small">
+                                <lightning-button-group>
+                                    <lightning-button variant="brand" label={labels.newAppointmentButtonLabel} onclick={handleNewAppointment}></lightning-button>
+                                    <lightning-button variant="brand" onclick={saveAppointmentHandler} label={labels.saveButtonLabel} ></lightning-button>
+                                    <lightning-button label={labels.changeDoctorButtonLabel} onclick={openChangeDoctorScreen}></lightning-button>
+                                    <lightning-button onclick={openPreviewTab} disabled={disablePrintButton}  label={labels.printButtonLabel} ></lightning-button>
+                                </lightning-button-group>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                    </div>
+                </div>
+                <lightning-tabset variant="scoped">
+                    <lightning-tab icon-name="standard:contact" title={labels.patientTitle} value="patient" label={labels.patientTitle}>
+                        <lightning-layout horizontal-align="" vertical-align="center" multiple-rows="true">
+                            <lightning-layout-item size="6" padding="">
+                                <label class="slds-form-element__label slds-text-title_bold" for="fio">{labels.patientFIO}: &nbsp;</label>
+                                <lightning-formatted-text id="fio" title={labels.patientFIO} value={patientName}></lightning-formatted-text>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6" padding="">
+                                <label class="slds-form-element__label slds-text-title_bold" for="mphone">{labels.mobileTitle}: &nbsp;</label>
+                                <lightning-formatted-phone id="mphone" title={labels.mobileTitle} value={mobilePhone}></lightning-formatted-phone>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6" padding="">
+                                <label class="slds-form-element__label slds-text-title_bold" for="address">{labels.addressTitle}: &nbsp;</label>
+                                <lightning-formatted-address id="address" disabled title={labels.addressTitle} street={mailingStreet} city={mailingCity} country={mailingCountry} ></lightning-formatted-address>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6" padding="">
+                                <label class="slds-form-element__label slds-text-title_bold" for="hphone">{labels.phoneTitle}: &nbsp;</label>
+                                <lightning-formatted-phone id="hphone" title={labels.phoneTitle} value={homePhone} ></lightning-formatted-phone>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6" padding="">
+                                <label class="slds-form-element__label slds-text-title_bold" for="birthdate">{labels.birthdateTitle}: &nbsp;</label>
+                                <lightning-formatted-date-time id="birthdate" title={labels.birthdateTitle} day="2-digit" month="2-digit" year="numeric" value={birthdate} ></lightning-formatted-date-time>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                    </lightning-tab>
+                    <lightning-tab icon-name="standard:contact_list" title={labels.complaintsTitle} value="complaints" label={labels.complaintsTitle}>
+                        <c-complaints-component-l-w-c data-id="complaintsComponent" ></c-complaints-component-l-w-c>
+                    </lightning-tab>
+                    <lightning-tab icon-name="standard:contact_list" title={labels.objectiveStatusTitle} value="status" label={labels.objectiveStatusTitle}>
+                        <c-objective-investigation-l-w-c data-id="objectiveInvestigation"></c-objective-investigation-l-w-c>
+                    </lightning-tab>
+                    <lightning-tab icon-name="standard:contact_list" title={labels.eyegroundTitle} value="eyeGround" label={labels.eyegroundTitle}>
+                        <c-eye-ground-investigation-l-w-c data-id="eyeGroundInvestigation"></c-eye-ground-investigation-l-w-c>
+                    </lightning-tab>
+                    <lightning-tab icon-name="standard:contact_list" title={labels.diagnosisTitle} value="diagnosis" label={labels.diagnosisTitle}>
+                        <c-multiselect-component-l-w-c data-id="diagnosisComponent" label={labels.diagnosisTitle} sobject-name="Diagnosis__c"></c-multiselect-component-l-w-c>
+                    </lightning-tab>
+                    <lightning-tab icon-name="standard:contact_list" title={labels.recommendationsTitle} value="recommendations" label={labels.recommendationsTitle}>
+                        <c-multiselect-component-l-w-c data-id="recommendationsComponent" label={labels.recommendationsTitle} sobject-name="Recommendation__c"></c-multiselect-component-l-w-c>
+                    </lightning-tab>
+                    <lightning-tab icon-name="standard:currency" title={labels.paymentTitle} value="billing" label={labels.paymentTitle}>
+                        Расчет стоимости приемов
+                    </lightning-tab>
+                </lightning-tabset>
+            </div>
+        </template>
+        <template if:true={showPreviewModal}>
+            <c-preview-modal-window input-dat={appointmentObjectForPrint} onprint={handlePrintDocument} onclosemodal={hidePreviewModal}></c-preview-modal-window>
+        </template>
+        <template if:true={showUpdateDoctorDataWindow}>
+            <c-changedoctor-data-window-l-w-c oncancelchange={handleCancel} ondoctordatachange={handleDoctorUpdate}></c-changedoctor-data-window-l-w-c>
+        </template>
+        <template if:true={showConfirmWindow}>
+            <c-confirmation-modal-window-l-w-c confirmation-text={confirmationText} onclosemodal={handleCancelConfirm} onconfirm={handleConfirmNewAppointment}></c-confirmation-modal-window-l-w-c>
+        </template>
+    </template>
+    <template if:false={isFeatureAllowed}>
+        <h1 class="slds-text-color_error slds-text-align_center">{labels.functionNotAllowMessage}</h1>
+    </template>
+
+</template>

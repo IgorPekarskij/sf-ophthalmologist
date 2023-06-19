@@ -1,0 +1,37 @@
+table.unstyled-table td,  table.unstyled-table th {
+    padding: 5px;
+}
+
+table.unstyled-table thead {
+    background: rgb(243, 242, 242);
+}
+
+table.unstyled-table tr {
+    border-bottom: 1px solid rgb(221, 219, 218);
+}
+
+.title-column_width {
+    width: 15%;
+}
+
+.visus-fields_align-inline {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.input_max-width {
+    max-width: 100px;
+}
+
+.input-label_align-inline {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.text-area-input textarea {
+    max-height: 32px;
+}

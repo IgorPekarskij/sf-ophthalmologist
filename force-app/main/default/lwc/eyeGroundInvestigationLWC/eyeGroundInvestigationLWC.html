@@ -1,0 +1,14 @@
+<template>
+    <div class="main">
+        <lightning-layout horizontal-align="space" vertical-align="center" multiple-rows="true">
+            <lightning-layout-item class="column-min-size column-max-size" size="6">
+                <h1 class="slds-text-align--center">{labels.headerTitleRight}</h1>
+                <c-eye-ground-component-l-w-c data-id="rightEye" is-left-eye="false"></c-eye-ground-component-l-w-c>
+            </lightning-layout-item>
+            <lightning-layout-item class="column-min-size column-max-size" size="6">
+                <h1 class="slds-text-align--center">{labels.headerTitleLeft}</h1>
+                <c-eye-ground-component-l-w-c data-id="leftEye" is-left-eye="true" ></c-eye-ground-component-l-w-c>
+            </lightning-layout-item>
+        </lightning-layout>
+    </div>
+</template>
