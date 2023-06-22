@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Visus_Left_Cor__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Визус после коррекции левый глаз</inlineHelpText>
+    <label>Visus Left (Cor)</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Visus_values</valueSetName>
+    </valueSet>
+</CustomField>

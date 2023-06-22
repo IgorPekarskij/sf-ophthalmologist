@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Inner_Eye_Pressure_Right__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>ВГД правый глаз. Пример:15</inlineHelpText>
+    <label>Inner Eye Pressure Right</label>
+    <precision>2</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>
