@@ -121,7 +121,7 @@ export default class DoctorAppointmentLWC extends LightningElement {
     }
 
     get headerText() {
-        return this.clinic ? `${this.clinic.title.toUpperCase()} МИКРОХИРУРГИИ ГЛАЗА МАКАРЧУКА` : '';
+        return this.clinic ? `${this.clinic.title.toUpperCase()}` : '';
     }
 
     startNewAppointment() {

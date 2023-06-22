@@ -1,3 +1,5 @@
+import {ShowToastEvent} from "lightning/platformShowToastEvent";
+
 const objectiveStatusFields = [
         {sobject: 'Eye_position__c'          , label: 'Орбита, положение глаза', id:'eye_position_{@}__c'          , isArray: true},
         {sobject: 'Eyelid__c'                , label: 'Веки, слёзные органы'   , id:'eyelid_{@}__c'                , isArray: true},
@@ -132,6 +134,46 @@ const objectiveStatusFields = [
         )
     };
 
+    const getValidDateString = (date = new Date) => {
+        return date.toLocaleString().slice(0,10)
+    }
+
+    const showToast = (title, message, variant) => {
+        const customEvent = new ShowToastEvent({
+            title: title,
+            message: message,
+            variant: variant
+        });
+        dispatchEvent(customEvent);
+    }
+
+    const showErrorToast = (message) => {
+        showToast('Ошибка', message, 'error');
+    }
+
+    const showSuccessToast = (message) => {
+        showToast(message, null, 'success');
+    }
+
+    const showWarningToast = (message) => {
+        showToast(message, null, 'warning');
+    }
+
+    const checkRequiredFields = (context, selector) => {
+        let hasError = false;
+        const fields = context.template.querySelectorAll(selector);
+        fields.forEach(field => {
+            const valid = field.reportValidity();
+            if(!valid && !hasError) {
+                hasError = true;
+            }
+        })
+        if(hasError) {
+            showErrorToast('Заполните обязательные поля!');
+        }
+        return hasError;
+    }
+
 export {
     vgdFields,
     visusFields,
@@ -144,5 +186,11 @@ export {
     cloneObject,
     getAllComponentDataBySelector,
     removeEmptyEntriesFromArray,
-    fireCustomEvent
+    fireCustomEvent,
+    getValidDateString,
+    checkRequiredFields,
+    showWarningToast,
+    showErrorToast,
+    showSuccessToast,
+    showToast
 }

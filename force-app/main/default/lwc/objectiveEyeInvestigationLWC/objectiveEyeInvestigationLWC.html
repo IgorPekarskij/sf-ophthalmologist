@@ -2,11 +2,17 @@
     <div>
         <lightning-layout multiple-rows="true" horizontal-align="spread">
             <lightning-layout-item  size="12" >
-                <lightning-layout vertical-align="end" horizontal-align="spread" multiple-rows="true">
-                    <lightning-layout-item size="7">
-                        <lightning-combobox data-id={visusId} label={labels.visusTitle} onchange={handleInputChange} options={visusOpt} value={selectedVisus}></lightning-combobox>
-                    </lightning-layout-item>
-                    <lightning-layout-item class="slds-m-left--xx-small slds-text-align--center" size="4" >
+                <div class="visus-container">
+                    <div class="visus-items">
+                        <lightning-combobox
+                                data-id={visusId}
+                                label={labels.visusTitle}
+                                onchange={handleInputChange}
+                                options={visusOpt}
+                                value={selectedVisus}
+                        ></lightning-combobox>
+                    </div>
+                    <div class="visus-items slds-m-left_xx-small" >
                         <lightning-button-stateful
                                 variant="brand"
                                 label-when-off={labels.withoutCorrection}
@@ -16,8 +22,8 @@
                                 selected={showCorrection}
                                 onclick={handleClickShowCorrection}>
                         </lightning-button-stateful>
-                    </lightning-layout-item>
-                </lightning-layout>
+                    </div>
+                </div>
             </lightning-layout-item>
             <lightning-layout-item size="12" >
                 <template if:true={showCorrection}>
@@ -25,7 +31,7 @@
                         <lightning-layout-item size="12">{labels.withCorrection}</lightning-layout-item>
                         <lightning-layout-item size="12">
                             <lightning-layout multiple-rows="true" horizontal-align="spread">
-                                <lightning-layout-item class="slds-p-right--small" size="3">
+                                <lightning-layout-item class="slds-p-right_small" size="3">
                                     <lightning-input
                                             data-id={sphereId}
                                             class="inputSelector"
@@ -34,7 +40,7 @@
                                             onblur={validateInputData}
                                     ></lightning-input>
                                 </lightning-layout-item>
-                                <lightning-layout-item class="slds-p-right--small" size="3">
+                                <lightning-layout-item class="slds-p-right_small" size="3">
                                     <lightning-input
                                             data-id={cylinderId}
                                             class="inputSelector"
@@ -43,7 +49,7 @@
                                             onblur={validateInputData}
                                     ></lightning-input>
                                 </lightning-layout-item>
-                                <lightning-layout-item class="slds-p-right--small" size="3">
+                                <lightning-layout-item class="slds-p-right_small" size="3">
                                     <lightning-input
                                             data-id={axysId}
                                             class="inputSelector"
@@ -68,9 +74,9 @@
                     </lightning-layout>
                 </template>
             </lightning-layout-item>
-            <lightning-layout-item class="slds-p-top--small" size="12" >
+            <lightning-layout-item class="slds-p-top_small" size="12" >
                 <lightning-layout multiple-rows="true" horizontal-align="spread">
-                    <lightning-layout-item class="slds-p-right--small" size="4">
+                    <lightning-layout-item class="slds-p-right_small" size="4">
                         <lightning-input
                                 data-id={innerPressureId}
                                 class="inputSelector"
@@ -82,7 +88,7 @@
                                 onblur={handleInputChange}
                         ></lightning-input>
                     </lightning-layout-item>
-                    <lightning-layout-item class="slds-p-right--small" size="4">
+                    <lightning-layout-item class="slds-p-right_small" size="4">
                         <lightning-input
                                 data-id={cornThinkId}
                                 class="inputSelector"
@@ -110,9 +116,12 @@
             </lightning-layout-item>
             <template for:each={fieldsData} for:item="field">
                 <lightning-layout-item key={field.id} size="12" >
-                    <div class='slds-card__body slds-card__body_inner'>
-                        <c-multiselect-component-l-w-c data-id={field.id} class="selectorCombo" label={field.label} sobject-name={field.sobject}></c-multiselect-component-l-w-c>
-                    </div>
+                    <c-multiselect-component-l-w-c
+                            data-id={field.id}
+                            class="selectorCombo"
+                            label={field.label}
+                            sobject-name={field.sobject}
+                    ></c-multiselect-component-l-w-c>
                 </lightning-layout-item>
             </template>
         </lightning-layout>

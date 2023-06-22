@@ -8,11 +8,11 @@ export default class PreviewComponentLwc extends LightningElement {
     @api
     set appointmentData(value) {
         this.appData = cloneObject(value);
-    };
+    }
 
     get appointmentData() {
         return this.appData;
-    };
+    }
 
     @track
     showObjectiveStatus = true;
@@ -31,6 +31,7 @@ export default class PreviewComponentLwc extends LightningElement {
         printButtonLabel       : 'Распечатать',
         fio                    : 'ФИО',
         birthdate              : 'Дата рождеия',
+        address                : 'Адрес',
         complaints             : 'Жалобы',
         anamnesis              : 'Анамнез',
         toLongTextErrorMessage : 'Максимальное количество символов 5000',
@@ -46,17 +47,25 @@ export default class PreviewComponentLwc extends LightningElement {
 
     get patientName() {
         let fullName = '';
-        if (this.appData.patient) {
+        if (this.appData.doctorAppointment) {
             fullName =
-                this.appData.patient.data.fields.Contact_Name__c.value;
+                this.appData.doctorAppointment.patient_name__c;
         }
         return fullName;
     }
 
     get birthdate() {
         let birthdate;
-        if (this.appData.patient) {
-            birthdate = this.appData.patient.data.fields.Birthdate.value;
+        if (this.appData.doctorAppointment) {
+            birthdate = this.appData.doctorAppointment.patient_birthdate__c;
+        }
+        return birthdate;
+    }
+
+    get address() {
+        let birthdate;
+        if (this.appData.doctorAppointment) {
+            birthdate = this.appData.doctorAppointment.patient_address__c;
         }
         return birthdate;
     }

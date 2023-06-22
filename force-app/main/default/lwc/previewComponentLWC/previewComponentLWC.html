@@ -7,59 +7,114 @@
             <lightning-layout multiple-rows="true" vertical-align="center" horizontal-align="spread">
                 <lightning-layout-item size="12">
                     <lightning-layout multiple-rows="true" vertical-align="center" horizontal-align="spread">
-                        <lightning-layout-item class="slds-m-top--small" size="2">{labels.fio}</lightning-layout-item>
-                        <lightning-layout-item class="slds-m-top--small" size="10">
-                            <lightning-input type="text" disabled variant="label-hidden" value={patientName}></lightning-input>
+                        <lightning-layout-item class="slds-m-top_small" size="2">{labels.fio}</lightning-layout-item>
+                        <lightning-layout-item class="slds-m-top_small" size="10">
+                            <lightning-input type="text" variant="label-hidden" value={patientName}></lightning-input>
                         </lightning-layout-item>
-                        <lightning-layout-item class="slds-m-top--small" size="2">{labels.birthdate}</lightning-layout-item>
-                        <lightning-layout-item class="slds-m-top--small" size="10">
-                            <lightning-input type="date" disabled variant="label-hidden" value={birthdate}></lightning-input>
+                        <lightning-layout-item class="slds-m-top_small" size="2">{labels.birthdate}</lightning-layout-item>
+                        <lightning-layout-item class="slds-m-top_small" size="10">
+                            <lightning-input type="date" date-style="long" variant="label-hidden" value={birthdate}></lightning-input>
                         </lightning-layout-item>
-                        <lightning-layout-item class="slds-m-top--small" size="2">{labels.complaints}</lightning-layout-item>
-                        <lightning-layout-item class="slds-m-top--small" size="10">
-                            <lightning-textarea data-array="true" data-id="doctorAppointment.complaints__c" variant="label-hidden" onblur={handleChangeValue} value={complaints} maxlength="5000" message-when-too-long={labels.toLongTextErrorMessage}></lightning-textarea>
+                        <lightning-layout-item class="slds-m-top_small" size="2">{labels.address}</lightning-layout-item>
+                        <lightning-layout-item class="slds-m-top_small" size="10">
+                            <lightning-input type="date" date-style="long" variant="label-hidden" value={address}></lightning-input>
                         </lightning-layout-item>
-                        <lightning-layout-item class="slds-m-top--small" size="2">{labels.anamnesis}</lightning-layout-item>
-                        <lightning-layout-item class="slds-m-top--small" size="10">
-                            <lightning-textarea data-array="false" data-id="doctorAppointment.anamnesis__c" variant="label-hidden" onblur={handleChangeValue} value={anamnesis} maxlength="5000" message-when-too-long={labels.toLongTextErrorMessage}></lightning-textarea>
+                        <lightning-layout-item class="slds-m-top_small" size="2">{labels.complaints}</lightning-layout-item>
+                        <lightning-layout-item class="slds-m-top_small" size="10">
+                            <lightning-textarea
+                                    data-array="true"
+                                    data-id="doctorAppointment.complaints__c"
+                                    variant="label-hidden"
+                                    onblur={handleChangeValue}
+                                    value={complaints}
+                                    maxlength="5000"
+                                    message-when-too-long={labels.toLongTextErrorMessage}
+                            ></lightning-textarea>
+                        </lightning-layout-item>
+                        <lightning-layout-item class="slds-m-top_small" size="2">{labels.anamnesis}</lightning-layout-item>
+                        <lightning-layout-item class="slds-m-top_small" size="10">
+                            <lightning-textarea
+                                    data-array="false"
+                                    data-id="doctorAppointment.anamnesis__c"
+                                    variant="label-hidden"
+                                    onblur={handleChangeValue}
+                                    value={anamnesis}
+                                    maxlength="5000"
+                                    message-when-too-long={labels.toLongTextErrorMessage}
+                            ></lightning-textarea>
                         </lightning-layout-item>
                     </lightning-layout>
                 </lightning-layout-item>
-                <div class="slds-border--top slds-m-top--small slds-m-bottom--small element-width-100"></div>
+                <div class="slds-border_top slds-m-top_small slds-m-bottom_small element-width-100"></div>
                 <div title={labels.addSectionToPrint} class="element-width-100 items-align_row ">
                     <h1>{labels.objectiveStatus}</h1>
                     <div class="element-position_right">
-                        <lightning-input data-id="showObjectiveStatus" data-value="objectiveStatus" type="checkbox" checked={showObjectiveStatus} variant="label-hidden" label={labels.show} onchange={handleShowSection}></lightning-input>
+                        <lightning-input
+                                data-id="showObjectiveStatus"
+                                data-value="objectiveStatus"
+                                type="checkbox"
+                                checked={showObjectiveStatus}
+                                variant="label-hidden"
+                                label={labels.show}
+                                onchange={handleShowSection}
+                        ></lightning-input>
                     </div>
                 </div>
                 <template if:true={showObjectiveStatus}>
-                    <lightning-layout-item class="slds-m-top--small slds-m-bottom--small" size="12">
-                        <div class="slds-m-top--small slds-m-bottom--small element-width-100">
+                    <lightning-layout-item class="slds-m-top_small slds-m-bottom_small" size="12">
+                        <div class="slds-m-top_small slds-m-bottom_small element-width-100">
                             <c-preview-table-header ></c-preview-table-header>
                         </div>
 
-                        <c-preview-table-l-w-c data-id="objectiveStatus" show-visus="true" fields={objectiveStatusFields} input-data={appData.objectiveStatus} onchangevalue={handleDataChange}></c-preview-table-l-w-c>
+                        <c-preview-table-l-w-c
+                                data-id="objectiveStatus"
+                                show-visus="true"
+                                fields={objectiveStatusFields}
+                                input-data={appData.objectiveStatus}
+                                onchangevalue={handleDataChange}
+                        ></c-preview-table-l-w-c>
                     </lightning-layout-item>
                 </template>
                 <div title={labels.addSectionToPrint} class="element-width-100">
                     <h1>{labels.eyeground}</h1>
                 </div>
-                <lightning-layout-item class="slds-m-top--small slds-m-bottom--small" size="12">
-                    <div class="slds-m-top--small slds-m-bottom--small element-width-100">
+                <lightning-layout-item class="slds-m-top_small slds-m-bottom_small" size="12">
+                    <div class="slds-m-top_small slds-m-bottom_small element-width-100">
                         <c-preview-table-header ></c-preview-table-header>
                     </div>
-                    <c-preview-table-l-w-c data-id="eyeground" fields={eyeGroundFields} input-data={appData.eyeground} onchangevalue={handleDataChange}></c-preview-table-l-w-c>
+                    <c-preview-table-l-w-c
+                            data-id="eyeground"
+                            fields={eyeGroundFields}
+                            input-data={appData.eyeground}
+                            onchangevalue={handleDataChange}
+                    ></c-preview-table-l-w-c>
                 </lightning-layout-item>
-                <div class="slds-border--top slds-m-top--small slds-m-bottom--small element-width-100"></div>
+                <div class="slds-border_top slds-m-top_small slds-m-bottom_small element-width-100"></div>
                 <lightning-layout-item  size="12">
                     <lightning-layout multiple-rows="true" vertical-align="center" horizontal-align="spread">
                         <lightning-layout-item size="2">{labels.diagnosis}</lightning-layout-item>
                         <lightning-layout-item size="10">
-                            <lightning-textarea data-array="true" data-id="doctorAppointment.diagnosis__c" variant="label-hidden" onblur={handleChangeValue} value={diagnosis} maxlength="5000" message-when-too-long={labels.toLongTextErrorMessage}></lightning-textarea>
+                            <lightning-textarea
+                                    data-array="true"
+                                    data-id="doctorAppointment.diagnosis__c"
+                                    variant="label-hidden"
+                                    onblur={handleChangeValue}
+                                    value={diagnosis}
+                                    maxlength="5000"
+                                    message-when-too-long={labels.toLongTextErrorMessage}
+                            ></lightning-textarea>
                         </lightning-layout-item>
                         <lightning-layout-item size="2">{labels.recommendations}</lightning-layout-item>
                         <lightning-layout-item size="10">
-                            <lightning-textarea data-array="true" data-id="doctorAppointment.recommendations__c" variant="label-hidden" onblur={handleChangeValue} value={recommendations} maxlength="5000" message-when-too-long={labels.toLongTextErrorMessage}></lightning-textarea>
+                            <lightning-textarea
+                                    data-array="true"
+                                    data-id="doctorAppointment.recommendations__c"
+                                    variant="label-hidden"
+                                    onblur={handleChangeValue}
+                                    value={recommendations}
+                                    maxlength="5000"
+                                    message-when-too-long={labels.toLongTextErrorMessage}
+                            ></lightning-textarea>
                         </lightning-layout-item>
                     </lightning-layout>
                 </lightning-layout-item>
@@ -67,13 +122,29 @@
         </div>
         <footer class="slds-card__footer">
             <lightning-layout horizontal-align="spread" vertical-align="center" multiple-rows="false" >
-                <lightning-layout-item size="6" class="slds-m-top--small">
+                <lightning-layout-item size="6" class="slds-m-top_small">
                     <div class="element-width-50">
-                        <lightning-input data-array="false" class="margin-auto" data-id="doctorAppointment.appointment_date__c" variant="label-inline" onblur={handleChangeValue} label={labels.appointmentDate} type="date" value={appointmentDate}></lightning-input>
+                        <lightning-input
+                                data-array="false"
+                                class="margin-auto"
+                                data-id="doctorAppointment.appointment_date__c"
+                                variant="label-inline"
+                                onblur={handleChangeValue}
+                                label={labels.appointmentDate}
+                                type="date" value={appointmentDate}
+                        ></lightning-input>
                     </div>
                 </lightning-layout-item>
-                <lightning-layout-item size="6" class="slds-m-top--small">
-                    <c-lookup-component label={labels.doctor} object="Contact" icon-name="standard:contact" variant="label-inline" value={appData.doctorAppointment.doctor__c} record-type-id={recordTypeId} onchange={handleSelectDoctor}></c-lookup-component>
+                <lightning-layout-item size="6" class="slds-m-top_small">
+                    <c-lookup-component
+                            label={labels.doctor}
+                            object="Contact"
+                            icon-name="standard:contact"
+                            variant="label-inline"
+                            value={appData.doctorAppointment.doctor__c}
+                            record-type-id={recordTypeId}
+                            onchange={handleSelectDoctor}
+                    ></c-lookup-component>
                 </lightning-layout-item>
             </lightning-layout>
         </footer>

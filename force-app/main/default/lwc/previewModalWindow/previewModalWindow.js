@@ -6,11 +6,11 @@ export default class PreviewModalWindow extends LightningElement {
     set inputDat(value) {
         console.log(JSON.stringify(value))
         this.dataForPreview = cloneObject(value);
-    };
+    }
 
     get inputDat() {
         return this.dataForPreview;
-    };
+    }
 
     @track
     dataForPreview = {};

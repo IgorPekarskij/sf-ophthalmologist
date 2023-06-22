@@ -1,4 +1,18 @@
 public with sharing class ResultOfDoctorExaminationCtrl {
+    private static Map<Integer, String> monthNames = new Map<Integer, String>{
+        1 => 'Январь',
+        2 => 'Февраль',
+        3 => 'Март',
+        4 => 'Апрель',
+        5 => 'Май',
+        6 => 'Июнь',
+        7 => 'Июль',
+        8 => 'Август',
+        9 => 'Сентябрь',
+        10 => 'Октябрь',
+        11 => 'Ноябрь',
+        12 => 'Декабрь'
+    };
     public Boolean displayObjectiveStatus {
         get {
             return objectiveStatus != null && objectiveStatus.Is_active__c;
@@ -28,7 +42,8 @@ public with sharing class ResultOfDoctorExaminationCtrl {
 
     public String pageHeader {
         get  {
-            return doctorAppointment != null ? doctorAppointment.Appointment_place__r.Name + ' микрохирургии глаза Макарчука' : 'Центр микрохирургии глаза Макарчука';
+//            return doctorAppointment != null ? doctorAppointment.Appointment_place__r.Name + ' микрохирургии глаза Макарчука' : 'Центр микрохирургии глаза Макарчука';
+            return 'Доктор - Пекарская Ирина Валерьевна';
         }
         set;
     }
@@ -60,7 +75,10 @@ public with sharing class ResultOfDoctorExaminationCtrl {
                 'Patient__c',
                 'Recommendations__c',
                 'Eyeground_Investigation__c',
-                'Appointment_place__r.Name'
+                'Appointment_place__r.Name',
+                'Patient_Name__c',
+                'Patient_Birthdate__c',
+                'Patient_Address__c'
         });
         this.doctorAppointment = (Doctor_Appointment__c)controller.getRecord();
         this.objectiveStatus = getObjectiveStatus(this.doctorAppointment.Objective_status__c);
@@ -174,23 +192,27 @@ public with sharing class ResultOfDoctorExaminationCtrl {
     public String getAppointmentDate() {
         String result = '';
         if (this.doctorAppointment.Appointment_Date__c != NULL) {
-            result = this.doctorAppointment.Appointment_Date__c.day() + '/' +
-                    this.doctorAppointment.Appointment_Date__c.month() + '/' +
+            result = this.doctorAppointment.Appointment_Date__c.day() + ' ' +
+                    monthNames.get(this.doctorAppointment.Appointment_Date__c.month()) + ' ' +
                     this.doctorAppointment.Appointment_Date__c.year();
         }
         return result;
     }
     public String getPatientBirthdate() {
         String result = '';
-        if (this.patient.Birthdate != NULL) {
-            result = this.patient.Birthdate.day() + '/' +
-                    this.patient.Birthdate.month() + '/' +
-                    this.patient.Birthdate.year();
+        if (this.doctorAppointment.Patient_Birthdate__c != NULL) {
+            Date test = this.doctorAppointment.Patient_Birthdate__c;
+            result = this.doctorAppointment.Patient_Birthdate__c.day() + ' ' +
+                    monthNames.get(this.doctorAppointment.Patient_Birthdate__c.month()) + ' ' +
+                    this.doctorAppointment.Patient_Birthdate__c.year();
         }
         return result;
     }
     public String getPatientName() {
-        return this.patient.Contact_Name__c;
+        return this.doctorAppointment.Patient_Name__c;
+    }
+    public String getPatientAddress() {
+        return this.doctorAppointment.Patient_Address__c;
     }
     public String getDoctorName() {
         return this.doctor.Contact_Name__c;

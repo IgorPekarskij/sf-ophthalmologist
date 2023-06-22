@@ -1,6 +1,6 @@
 <!-- Multiselect Component Lwc -->
 <template>
-    <div class="slds-card__body slds-card__body_inner">
+    <div class="slds-card__body">
         <label class="slds-form-element__label" for="contactLookup">{label}</label>
         <c-multi-select-combobox-l-w-c data-id="comboComponentSelector" onitemselected={handleSelectedItems} sobject-name={sobjectName}></c-multi-select-combobox-l-w-c>
     </div>
@@ -11,8 +11,8 @@
                     label={item.label}
                     name={item.value}
                     onremove={removePill}
-                    class="slds-m-right_xx-small slds-m-left_none slds-m-bottom_xx-small" >
-
+                    class="slds-m-right_xx-small slds-m-left_none slds-m-bottom_xx-small"
+            >
             </lightning-pill>
         </template>
     </div>

@@ -1,3 +1,18 @@
 /**
   * Created by Igor Pekarskij on 19.06.2023.
  */
+
+.header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.logo {
+    height: 35px;
+    width: auto;
+}

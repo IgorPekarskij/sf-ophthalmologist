@@ -22,6 +22,7 @@ public with sharing class DoctorAppointmentController {
             if (eyeGround == null) eyeGround = new Eyeground_Investigation__c();
             upsert eyeGround;
             resultMap.put('eyeGround', eyeGround.Id);
+            System.debug('appointment >>>>>>>>>>>>>>>>> ');
             SObject doctorApp = createSObject((Map<String, Object>) inputData.get('doctorAppointment'), 'Doctor_Appointment__c');
             if (doctorApp.Id == null) {
                 doctorApp.put('Objective_status__c', objStatus.get('id'));
@@ -39,7 +40,7 @@ public with sharing class DoctorAppointmentController {
     }
 
     private static SObject createSObject(Map<String, Object> od, String sobjectApiName) {
-//        System.debug('od ' + od);
+        System.debug('od ' + od);
         SObject newSObject;
         if (SOBJECT_TYPE_MAP.get(sobjectApiName) != null) {
             newSObject = SOBJECT_TYPE_MAP.get(sobjectApiName).newSObject();
@@ -56,7 +57,7 @@ public with sharing class DoctorAppointmentController {
                         try {
                             switch on fieldsMap.get(field).getDescribe().getType() {
                                 when DATE {
-                                    value = Date.valueOf(value);
+                                    value = Date.parse((String) value);
                                 }
                                 when DOUBLE {
                                     value = Double.valueOf(value);

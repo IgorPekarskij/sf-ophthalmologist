@@ -4,7 +4,7 @@
 
 .column-min-size {
     min-width: 300px;
-    max-width: 49%;
+   /* max-width: 49%;*/
 }
 
 @media (min-width: 1116px) {

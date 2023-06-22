@@ -29,8 +29,12 @@
                     <td class="padding-left10">{!patientName}</td>
                 </tr>
                 <tr class="main-information-table-header">
-                    <td >Дата рождеия</td>
+                    <td>Дата рождеия</td>
                     <td class="padding-left10">{!patientBirthdate}</td>
+                </tr>
+                <tr class="main-information-table-header">
+                    <td>Адрес</td>
+                    <td class="padding-left10">{!patientAddress}</td>
                 </tr>
                 <tr class="main-information-table-header">
                     <td>Жалобы</td>
